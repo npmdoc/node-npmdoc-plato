@@ -1,0 +1,859 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/es-analysis/plato">plato (v1.7.0)</a>
+</h1>
+<h4>JavaScript source analysis and visualizer</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.plato">module plato</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.getOverviewReport">
+            function <span class="apidocSignatureSpan">plato.</span>getOverviewReport
+            <span class="apidocSignatureSpan">(reports)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.inspect">
+            function <span class="apidocSignatureSpan">plato.</span>inspect
+            <span class="apidocSignatureSpan">(files, outputDir, options, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.logger">
+            function <span class="apidocSignatureSpan">plato.</span>logger
+            <span class="apidocSignatureSpan">(level)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">plato.</span>info</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">plato.</span>logger.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">plato.</span>util</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.plato.info">module plato.info</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.info.help">
+            function <span class="apidocSignatureSpan">plato.info.</span>help
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.info.version">
+            function <span class="apidocSignatureSpan">plato.info.</span>version
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">plato.info.</span>name</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.plato.logger">module plato.logger</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.logger.logger">
+            function <span class="apidocSignatureSpan">plato.</span>logger
+            <span class="apidocSignatureSpan">(level)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">plato.logger.</span>DEBUG</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">plato.logger.</span>ERROR</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">plato.logger.</span>INFO</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">plato.logger.</span>TRACE</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">plato.logger.</span>WARNING</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.plato.logger.prototype">module plato.logger.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.logger.prototype.debug">
+            function <span class="apidocSignatureSpan">plato.logger.prototype.</span>debug
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.logger.prototype.error">
+            function <span class="apidocSignatureSpan">plato.logger.prototype.</span>error
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.logger.prototype.info">
+            function <span class="apidocSignatureSpan">plato.logger.prototype.</span>info
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.logger.prototype.trace">
+            function <span class="apidocSignatureSpan">plato.logger.prototype.</span>trace
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.logger.prototype.warning">
+            function <span class="apidocSignatureSpan">plato.logger.prototype.</span>warning
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.plato.util">module plato.util</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.util.escapeHTML">
+            function <span class="apidocSignatureSpan">plato.util.</span>escapeHTML
+            <span class="apidocSignatureSpan">(html)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.util.findCommonBase">
+            function <span class="apidocSignatureSpan">plato.util.</span>findCommonBase
+            <span class="apidocSignatureSpan">(files)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.util.formatJSON">
+            function <span class="apidocSignatureSpan">plato.util.</span>formatJSON
+            <span class="apidocSignatureSpan">(report)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.util.readJSON">
+            function <span class="apidocSignatureSpan">plato.util.</span>readJSON
+            <span class="apidocSignatureSpan">(file, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.util.stripComments">
+            function <span class="apidocSignatureSpan">plato.util.</span>stripComments
+            <span class="apidocSignatureSpan">(str)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.plato" id="apidoc.module.plato">module plato</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.plato.getOverviewReport" id="apidoc.element.plato.getOverviewReport">
+        function <span class="apidocSignatureSpan">plato.</span>getOverviewReport
+        <span class="apidocSignatureSpan">(reports)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getOverviewReport = function (reports) {
+  var culledReports = [];
+  var summary = {
+    total : {
+      jshint: 0,
+      sloc : 0,
+      maintainability : 0
+    },
+    average : {
+      sloc : 0,
+      maintainability : 0
+    }
+  };
+
+  reports.forEach(function(report) {
+    // clone objects so we don't have to worry about side effects
+    summary.total.sloc += report.complexity.methodAggregate.sloc.physical;
+    summary.total.maintainability += report.complexity.maintainability;
+
+    var methodAggregate = _.cloneDeep(report.complexity.methodAggregate);
+    var reportItem = {};
+    reportItem.info = report.info;
+    if (report.jshint) {
+      summary.total.jshint += report.jshint.messages.length;
+      reportItem.jshint = {
+        messages : report.jshint.messages.length
+      };
+    }
+    if (report.complexity) {
+      reportItem.complexity = {
+        methodAggregate : methodAggregate,
+        module : report.complexity.module,
+        module_safe : report.complexity.module_safe,
+        maintainability : _.cloneDeep(report.complexity.maintainability)
+      };
+    }
+    culledReports.push(reportItem);
+  });
+
+  summary.average.sloc = ~~(summary.total.sloc / reports.length);
+  summary.average.jshint = (summary.total.jshint / reports.length).toFixed(2);
+  summary.average.maintainability = (summary.total.maintainability / reports.length).toFixed(2);
+
+  return {
+    summary : summary,
+    reports : culledReports
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.plato.inspect" id="apidoc.element.plato.inspect">
+        function <span class="apidocSignatureSpan">plato.</span>inspect
+        <span class="apidocSignatureSpan">(files, outputDir, options, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">inspect = function (files, outputDir, options, done) {
+
+	if (!files) {
+	  // at least give me a file man...
+	  return;
+	}
+
+  files = files instanceof Array ? files : [files];
+  files = _.flatten(files.map(unary(glob.sync)));
+
+  var flags = {
+    complexity : {
+      commonjs : true,
+      logicalor : true,
+      switchcase : true,
+      forin : false,
+      trycatch : false,
+      newmi : true
+    },
+    jshint : {} // use jshint defaults
+  };
+
+  if (options.eslint) {
+    options.jshint = options.eslint;
+    reporters.jshint = reporters.eslint;
+    delete options.eslint;
+    delete reporters.eslint;
+  }
+
+  Object.keys(flags).forEach(function(flag){
+    if (flag in options) flags[flag] = _.clone(options[flag]);
+  });
+
+  if (options.q) log.level = Logger.ERROR;
+
+  if (options.date) {
+    // if we think we were given seconds
+    if (options.date &lt; 10000000000 ) options.date = options.date * 1000;
+    options.date = new Date(options.date);
+  }
+
+  var reports = [];
+
+  var fileOutputDir = outputDir ? path.join(outputDir, fileDir) : false;
+
+  var commonBasePath = util.findCommonBase(files);
+
+  var runReports = function(files, done) {
+    files.forEach(function(file) {
+      if (options.exclude &amp;&amp; options.exclude.test(file)) return;
+
+      if (options.recurse &amp;&amp; fs.statSync(file).isDirectory()) {
+        files = fs.readdirSync(file).map(function(innerFile) {
+          return path.join(file,innerFile);
+        });
+        runReports(files);
+      } else if (file.match(/\.js$/)) {
+        log.info('Reading "%s"', file);
+
+        var fileShort = file.replace(commonBasePath, '');
+        var fileSafe = fileShort.replace(/[^a-zA-Z0-9]/g,'_');
+        var source = fs.readFileSync(file).toString().trim();
+        if (!source) {
+          log.info('Not parsing empty file "%s"', file);
+          return;
+        }
+
+        // if skip empty line option
+        if(options.noempty) {
+          source = source.replace(/^\s*[\r\n]/gm ,"");
+        }
+
+        // if begins with shebang
+        if (source[0] === '#' &amp;&amp; source[1] === '!') {
+          source = '//' + source;
+        }
+        var report = {
+          info : {
+            file : file,
+            fileShort : fileShort,
+            fileSafe : fileSafe,
+            link : fileDir + '/' + fileSafe + '/index.html'
+          }
+        };
+
+        var error = false;
+        _.each(reporters,function(reporter, name) {
+          if (!flags[name]) return;
+          try {
+            report[name] = reporter.process(source, flags[name], report.info);
+          } catch (e) {
+            error = true;
+            log.error('Error reading file %s: ', file, e.toString());
+            log.error(e.stack);
+          }
+        });
+
+        if (error) return;
+        reports.push(report);
+        if (fileOutputDir) {
+          var outdir = path.join(fileOutputDir, report.info.fileSafe);
+          if (!fs.existsSync(outdir)) fs.mkdirSync(outdir);
+          writeFileReport(outdir, report, source, options);
+        }
+      }
+    });
+    if (done) done();
+  };
+
+  if (!fileOutputDir) {
+    runReports(files,function() {
+      done(reports);
+    });
+  } else {
+    fs.mkdirp(fileOutputDir,function() {
+      runReports(files,function() {
+        var reportFilePrefix = path.join(outputDir, 'report');
+        var overview = path.join(outputDir, 'index.html');
+        var wallDisplay = path.join(outputDir, 'display.html');
+
+        fs.copy(assets, path.join(outputDir, 'assets'), function() {
+          var overviewReport = exports.getOverviewReport(reports);
+          updateHistoricalOverview(reportFilePrefix, overviewReport, options);
+          writeReport(reportFilePrefix, overviewReport);
+          writeOverview(overview, overviewReport, {
+            title : options.title,
+            flags : flags
+          }, overviewTemplate);
+          writeOverview(wallDisplay, overviewReport, {
+            title : options.title,
+            flags : flags
+          }, displayTemplate);
+          done(reports);
+        });
+      });
+    });
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+};
+
+var callback = function (report){
+// once done the analysis,
+// execute this
+};
+
+plato.<span class="apidocCodeKeywordSpan">inspect</span>(files, outputDir, options, callback);
+```
+
+## Data sources
+
+- Complexity data by [Phil Booth](https://github.com/philbooth)'s [complexity-report](https://github.com/philbooth/complexityReport
+.js)
+- Lint data from [jshint](https://github.com/jshint/jshint/) and [eslint](https://github.com/eslint/eslint)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.plato.logger" id="apidoc.element.plato.logger">
+        function <span class="apidocSignatureSpan">plato.</span>logger
+        <span class="apidocSignatureSpan">(level)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Logger(level) {
+  this.level = level;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.plato.info" id="apidoc.module.plato.info">module plato.info</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.plato.info.help" id="apidoc.element.plato.info.help">
+        function <span class="apidocSignatureSpan">plato.info.</span>help
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">help = function () {
+  console.log('\nUsage : %s [options] file1.js file2.js ... fileN.js', pkg.name);
+  Object.keys(options).forEach(function(shortOption){
+    var option = options[shortOption];
+    console.log(
+      '  -%s%s%s%s',
+      shortOption,
+      option.long ? ', --' + option.long : '',
+      option.type !== 'Boolean' ? ' : ' + option.type : '',
+      option.required ? ' *required*' : ''
+    );
+    console.log('      %s', option.desc);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.plato.info.version" id="apidoc.element.plato.info.version">
+        function <span class="apidocSignatureSpan">plato.info.</span>version
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">version = function () {
+  console.log(pkg.version);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.plato.logger" id="apidoc.module.plato.logger">module plato.logger</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.plato.logger.logger" id="apidoc.element.plato.logger.logger">
+        function <span class="apidocSignatureSpan">plato.</span>logger
+        <span class="apidocSignatureSpan">(level)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Logger(level) {
+  this.level = level;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.plato.logger.prototype" id="apidoc.module.plato.logger.prototype">module plato.logger.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.plato.logger.prototype.debug" id="apidoc.element.plato.logger.prototype.debug">
+        function <span class="apidocSignatureSpan">plato.logger.prototype.</span>debug
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">debug = function () {
+  if (i &gt;= this.level) console.log.apply(console,arguments);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+};
+
+exports.readJSON = function (file, options) {
+if (options.q) log.level = Logger.ERROR;
+var result = {};
+if (fs.existsSync(file)) {
+  log.<span class="apidocCodeKeywordSpan">debug</span>('Parsing JSON from file %s', file);
+  try {
+    var src = fs.readFileSync(file);
+    result = JSON.parse(src);
+  } catch(e) {
+    log.warning('Could not parse JSON from file %s', file);
+  }
+} else {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.plato.logger.prototype.error" id="apidoc.element.plato.logger.prototype.error">
+        function <span class="apidocSignatureSpan">plato.logger.prototype.</span>error
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">error = function () {
+  if (i &gt;= this.level) console.log.apply(console,arguments);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.plato.logger.prototype.info" id="apidoc.element.plato.logger.prototype.info">
+        function <span class="apidocSignatureSpan">plato.logger.prototype.</span>info
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">info = function () {
+  if (i &gt;= this.level) console.log.apply(console,arguments);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  try {
+    var src = fs.readFileSync(file);
+    result = JSON.parse(src);
+  } catch(e) {
+    log.warning('Could not parse JSON from file %s', file);
+  }
+} else {
+  log.<span class="apidocCodeKeywordSpan">info</span>('Not parsing missing file "%s"', file);
+}
+return result;
+};
+
+exports.stripComments = function (str) {
+/*jshint regexp:false */
+str = str || '';
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.plato.logger.prototype.trace" id="apidoc.element.plato.logger.prototype.trace">
+        function <span class="apidocSignatureSpan">plato.logger.prototype.</span>trace
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">trace = function () {
+  if (i &gt;= this.level) console.log.apply(console,arguments);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.plato.logger.prototype.warning" id="apidoc.element.plato.logger.prototype.warning">
+        function <span class="apidocSignatureSpan">plato.logger.prototype.</span>warning
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">warning = function () {
+  if (i &gt;= this.level) console.log.apply(console,arguments);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var result = {};
+  if (fs.existsSync(file)) {
+    log.debug('Parsing JSON from file %s', file);
+    try {
+      var src = fs.readFileSync(file);
+      result = JSON.parse(src);
+    } catch(e) {
+      log.<span class="apidocCodeKeywordSpan">warning</span>('Could not parse JSON from file %s', file);
+    }
+  } else {
+    log.info('Not parsing missing file "%s"', file);
+  }
+  return result;
+};
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.plato.util" id="apidoc.module.plato.util">module plato.util</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.plato.util.escapeHTML" id="apidoc.element.plato.util.escapeHTML">
+        function <span class="apidocSignatureSpan">plato.util.</span>escapeHTML
+        <span class="apidocSignatureSpan">(html)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">escapeHTML = function (html) {
+  return html
+      .replace(/&amp;/g, "&amp;amp;")
+      .replace(/&lt;/g, "&amp;lt;")
+      .replace(/&gt;/g, "&amp;gt;")
+      .replace(/"/g, "&amp;quot;")
+      .replace(/'/g, "&amp;#039;");
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.plato.util.findCommonBase" id="apidoc.element.plato.util.findCommonBase">
+        function <span class="apidocSignatureSpan">plato.util.</span>findCommonBase
+        <span class="apidocSignatureSpan">(files)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">findCommonBase = function (files) {
+  if (!files || files.length === 1) return '';
+  var lastSlash = files[0].lastIndexOf(path.sep);
+  if (!lastSlash) return '';
+  var first = files[0].substr(0, lastSlash + 1);
+  var prefixlen = first.length;
+  files.forEach(function(file){
+    for (var i = prefixlen; i &gt; 0; i--) {
+      if (file.substr(0,i) === first.substr(0,i)) {
+        prefixlen = i;
+        return;
+      }
+    }
+    prefixlen = 0;
+  });
+  return first.substr(0,prefixlen);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.plato.util.formatJSON" id="apidoc.element.plato.util.formatJSON">
+        function <span class="apidocSignatureSpan">plato.util.</span>formatJSON
+        <span class="apidocSignatureSpan">(report)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">formatJSON = function (report) {
+  return JSON.stringify(report, function(k,v){
+    if (k === 'identifiers') return ['__stripped__'];
+    return v;
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.plato.util.readJSON" id="apidoc.element.plato.util.readJSON">
+        function <span class="apidocSignatureSpan">plato.util.</span>readJSON
+        <span class="apidocSignatureSpan">(file, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">readJSON = function (file, options) {
+  if (options.q) log.level = Logger.ERROR;
+  var result = {};
+  if (fs.existsSync(file)) {
+    log.debug('Parsing JSON from file %s', file);
+    try {
+      var src = fs.readFileSync(file);
+      result = JSON.parse(src);
+    } catch(e) {
+      log.warning('Could not parse JSON from file %s', file);
+    }
+  } else {
+    log.info('Not parsing missing file "%s"', file);
+  }
+  return result;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.plato.util.stripComments" id="apidoc.element.plato.util.stripComments">
+        function <span class="apidocSignatureSpan">plato.util.</span>stripComments
+        <span class="apidocSignatureSpan">(str)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">stripComments = function (str) {
+<span class="apidocCodeCommentSpan">  /*jshint regexp:false */
+</span>  str = str || '';
+
+  var multiline = /\/\*(?:(?!\*\/)|.|\n)*?\*\//g;
+  var singleline = /\/\/.*/g;
+
+  return str.replace(multiline, '').replace(singleline, '');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
