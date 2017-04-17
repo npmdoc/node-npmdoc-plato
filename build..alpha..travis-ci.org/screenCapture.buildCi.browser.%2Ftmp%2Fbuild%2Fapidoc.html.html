@@ -56,6 +56,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.plato.Gruntfile">
+            function <span class="apidocSignatureSpan">plato.</span>Gruntfile
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.element.plato.getOverviewReport">
             function <span class="apidocSignatureSpan">plato.</span>getOverviewReport
             <span class="apidocSignatureSpan">(reports)</span>
@@ -101,6 +110,32 @@
 
     </ol></li>
 
+    <li class="apidocModuleLi"><a href="#apidoc.module.plato.Gruntfile">module plato.Gruntfile</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.Gruntfile.Gruntfile">
+            function <span class="apidocSignatureSpan">plato.</span>Gruntfile
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.plato.getOverviewReport">module plato.getOverviewReport</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.getOverviewReport.getOverviewReport">
+            function <span class="apidocSignatureSpan">plato.</span>getOverviewReport
+            <span class="apidocSignatureSpan">(reports)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
     <li class="apidocModuleLi"><a href="#apidoc.module.plato.info">module plato.info</a><ol>
 
         <li>
@@ -124,6 +159,19 @@
         <li>
 
             <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">plato.info.</span>name</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.plato.inspect">module plato.inspect</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.plato.inspect.inspect">
+            function <span class="apidocSignatureSpan">plato.</span>inspect
+            <span class="apidocSignatureSpan">(files, outputDir, options, done)</span>
+            </a>
 
         </li>
 
@@ -274,6 +322,158 @@
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.plato" id="apidoc.module.plato">module plato</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.plato.Gruntfile" id="apidoc.element.plato.Gruntfile">
+        function <span class="apidocSignatureSpan">plato.</span>Gruntfile
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Gruntfile = function (grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    nodeunit: {
+      files: ['test/**/*_test.js']
+    },
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      gruntfile: {
+        src: 'Gruntfile.js'
+      },
+      lib: {
+        src: ['lib/**/*.js', '!lib/assets/**/*.js']
+      },
+      test: {
+        src: ['test/**/*.js','!test/fixtures/**/*.js']
+      },
+      assets: {
+        src: ['lib/assets/scripts/*.js']
+      }
+    },
+    uglify: {
+      'assets' : {
+        files : {
+          'lib/assets/scripts/bundles/core-bundle.js' : [
+            'lib/assets/scripts/vendor/jquery-1.8.3.min.js',
+            'lib/assets/scripts/vendor/lodash.min.js',
+            'lib/assets/scripts/vendor/raphael-min.js',
+            'lib/assets/scripts/vendor/morris.min.js',
+            'lib/assets/scripts/vendor/jquery.fittext.js',
+            'lib/assets/scripts/vendor/bootstrap-tooltip.js',
+            'lib/assets/scripts/vendor/bootstrap-popover.js'
+          ],
+          'lib/assets/scripts/bundles/codemirror.js' : [
+            'lib/assets/scripts/vendor/codemirror/codemirror.js',
+            'lib/assets/scripts/vendor/codemirror/javascript.js',
+            'lib/assets/scripts/vendor/codemirror/util/searchcursor.js'
+          ]
+        }
+      }
+    },
+    watch: {
+      gruntfile: {
+        files: '&lt;%= jshint.gruntfile.src %&gt;',
+        tasks: ['jshint:gruntfile']
+      },
+      lib: {
+        files: '&lt;%= jshint.lib.src %&gt;',
+        tasks: ['jshint:lib', 'nodeunit']
+      },
+      test: {
+        files: '&lt;%= jshint.test.src %&gt;',
+        tasks: ['jshint:test', 'nodeunit']
+      }
+    },
+    casper : {
+      test: {
+        files: {
+          'reports/casper.xml': [
+            'test/casper-overview.js',
+            'test/casper-sortable-file-list.js'
+          ],
+        },
+        options : {
+          test: true,
+          verbose: true,
+          'fail-fast': true,
+          'log-level': 'error',
+          concise: true,
+          parallel : false,
+          concurrency : 2
+        }
+      }
+    }
+  });
+
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-casper');
+
+  grunt.registerTask('runtest',function(){
+    var done = this.async();
+
+    grunt.util.spawn({
+        cmd : './bin/plato',
+        args : [
+          '-q',
+          '-dtmp',
+          '-ttest report',
+          'test/fixtures/a.js','test/fixtures/b.js','test/fixtures/c-es6.js','test/fixtures/d-es6.js','test/fixtures/empty.js'
+        ]
+      },
+      function(err, result, code){
+        console.log(result.stdout);
+        console.log(result.stderr);
+        if (err || code !== 0) {
+          grunt.fatal('Running plato binary failed');
+        }
+        done();
+      }
+    );
+  });
+
+  grunt.registerTask('runbin',function(){
+    var done = this.async();
+
+    grunt.util.spawn({
+        cmd : './bin/plato',
+        args : [
+          '-q',
+          '-r',
+          '-l.jshintrc',
+          '-xvendor|bundles',
+          '-dreports',
+          '-tPlato report',
+          'lib/'
+        ]
+      },
+      function(err, result, code){
+        console.log(result.stdout);
+        if (err || code !== 0) {
+          console.log(err);
+          grunt.fatal('Running plato binary failed');
+        }
+        done();
+      }
+    );
+  });
+
+  grunt.registerTask('optimize', ['uglify']);
+  // Default task.
+  grunt.registerTask('test', ['jshint', 'nodeunit', 'runtest', 'runbin', 'casper']);
+  grunt.registerTask('default', ['test']);
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
     <h2>
@@ -525,6 +725,228 @@ plato.<span class="apidocCodeKeywordSpan">inspect</span>(files, outputDir, optio
 </div>
 
 <div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.plato.Gruntfile" id="apidoc.module.plato.Gruntfile">module plato.Gruntfile</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.plato.Gruntfile.Gruntfile" id="apidoc.element.plato.Gruntfile.Gruntfile">
+        function <span class="apidocSignatureSpan">plato.</span>Gruntfile
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Gruntfile = function (grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    nodeunit: {
+      files: ['test/**/*_test.js']
+    },
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      gruntfile: {
+        src: 'Gruntfile.js'
+      },
+      lib: {
+        src: ['lib/**/*.js', '!lib/assets/**/*.js']
+      },
+      test: {
+        src: ['test/**/*.js','!test/fixtures/**/*.js']
+      },
+      assets: {
+        src: ['lib/assets/scripts/*.js']
+      }
+    },
+    uglify: {
+      'assets' : {
+        files : {
+          'lib/assets/scripts/bundles/core-bundle.js' : [
+            'lib/assets/scripts/vendor/jquery-1.8.3.min.js',
+            'lib/assets/scripts/vendor/lodash.min.js',
+            'lib/assets/scripts/vendor/raphael-min.js',
+            'lib/assets/scripts/vendor/morris.min.js',
+            'lib/assets/scripts/vendor/jquery.fittext.js',
+            'lib/assets/scripts/vendor/bootstrap-tooltip.js',
+            'lib/assets/scripts/vendor/bootstrap-popover.js'
+          ],
+          'lib/assets/scripts/bundles/codemirror.js' : [
+            'lib/assets/scripts/vendor/codemirror/codemirror.js',
+            'lib/assets/scripts/vendor/codemirror/javascript.js',
+            'lib/assets/scripts/vendor/codemirror/util/searchcursor.js'
+          ]
+        }
+      }
+    },
+    watch: {
+      gruntfile: {
+        files: '&lt;%= jshint.gruntfile.src %&gt;',
+        tasks: ['jshint:gruntfile']
+      },
+      lib: {
+        files: '&lt;%= jshint.lib.src %&gt;',
+        tasks: ['jshint:lib', 'nodeunit']
+      },
+      test: {
+        files: '&lt;%= jshint.test.src %&gt;',
+        tasks: ['jshint:test', 'nodeunit']
+      }
+    },
+    casper : {
+      test: {
+        files: {
+          'reports/casper.xml': [
+            'test/casper-overview.js',
+            'test/casper-sortable-file-list.js'
+          ],
+        },
+        options : {
+          test: true,
+          verbose: true,
+          'fail-fast': true,
+          'log-level': 'error',
+          concise: true,
+          parallel : false,
+          concurrency : 2
+        }
+      }
+    }
+  });
+
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-casper');
+
+  grunt.registerTask('runtest',function(){
+    var done = this.async();
+
+    grunt.util.spawn({
+        cmd : './bin/plato',
+        args : [
+          '-q',
+          '-dtmp',
+          '-ttest report',
+          'test/fixtures/a.js','test/fixtures/b.js','test/fixtures/c-es6.js','test/fixtures/d-es6.js','test/fixtures/empty.js'
+        ]
+      },
+      function(err, result, code){
+        console.log(result.stdout);
+        console.log(result.stderr);
+        if (err || code !== 0) {
+          grunt.fatal('Running plato binary failed');
+        }
+        done();
+      }
+    );
+  });
+
+  grunt.registerTask('runbin',function(){
+    var done = this.async();
+
+    grunt.util.spawn({
+        cmd : './bin/plato',
+        args : [
+          '-q',
+          '-r',
+          '-l.jshintrc',
+          '-xvendor|bundles',
+          '-dreports',
+          '-tPlato report',
+          'lib/'
+        ]
+      },
+      function(err, result, code){
+        console.log(result.stdout);
+        if (err || code !== 0) {
+          console.log(err);
+          grunt.fatal('Running plato binary failed');
+        }
+        done();
+      }
+    );
+  });
+
+  grunt.registerTask('optimize', ['uglify']);
+  // Default task.
+  grunt.registerTask('test', ['jshint', 'nodeunit', 'runtest', 'runbin', 'casper']);
+  grunt.registerTask('default', ['test']);
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.plato.getOverviewReport" id="apidoc.module.plato.getOverviewReport">module plato.getOverviewReport</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.plato.getOverviewReport.getOverviewReport" id="apidoc.element.plato.getOverviewReport.getOverviewReport">
+        function <span class="apidocSignatureSpan">plato.</span>getOverviewReport
+        <span class="apidocSignatureSpan">(reports)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getOverviewReport = function (reports) {
+  var culledReports = [];
+  var summary = {
+    total : {
+      jshint: 0,
+      sloc : 0,
+      maintainability : 0
+    },
+    average : {
+      sloc : 0,
+      maintainability : 0
+    }
+  };
+
+  reports.forEach(function(report) {
+    // clone objects so we don't have to worry about side effects
+    summary.total.sloc += report.complexity.methodAggregate.sloc.physical;
+    summary.total.maintainability += report.complexity.maintainability;
+
+    var methodAggregate = _.cloneDeep(report.complexity.methodAggregate);
+    var reportItem = {};
+    reportItem.info = report.info;
+    if (report.jshint) {
+      summary.total.jshint += report.jshint.messages.length;
+      reportItem.jshint = {
+        messages : report.jshint.messages.length
+      };
+    }
+    if (report.complexity) {
+      reportItem.complexity = {
+        methodAggregate : methodAggregate,
+        module : report.complexity.module,
+        module_safe : report.complexity.module_safe,
+        maintainability : _.cloneDeep(report.complexity.maintainability)
+      };
+    }
+    culledReports.push(reportItem);
+  });
+
+  summary.average.sloc = ~~(summary.total.sloc / reports.length);
+  summary.average.jshint = (summary.total.jshint / reports.length).toFixed(2);
+  summary.average.maintainability = (summary.total.maintainability / reports.length).toFixed(2);
+
+  return {
+    summary : summary,
+    reports : culledReports
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.plato.info" id="apidoc.module.plato.info">module plato.info</a></h1>
 
 
@@ -568,6 +990,177 @@ plato.<span class="apidocCodeKeywordSpan">inspect</span>(files, outputDir, optio
     </ul>
 
 
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.plato.inspect" id="apidoc.module.plato.inspect">module plato.inspect</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.plato.inspect.inspect" id="apidoc.element.plato.inspect.inspect">
+        function <span class="apidocSignatureSpan">plato.</span>inspect
+        <span class="apidocSignatureSpan">(files, outputDir, options, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">inspect = function (files, outputDir, options, done) {
+
+	if (!files) {
+	  // at least give me a file man...
+	  return;
+	}
+
+  files = files instanceof Array ? files : [files];
+  files = _.flatten(files.map(unary(glob.sync)));
+
+  var flags = {
+    complexity : {
+      commonjs : true,
+      logicalor : true,
+      switchcase : true,
+      forin : false,
+      trycatch : false,
+      newmi : true
+    },
+    jshint : {} // use jshint defaults
+  };
+
+  if (options.eslint) {
+    options.jshint = options.eslint;
+    reporters.jshint = reporters.eslint;
+    delete options.eslint;
+    delete reporters.eslint;
+  }
+
+  Object.keys(flags).forEach(function(flag){
+    if (flag in options) flags[flag] = _.clone(options[flag]);
+  });
+
+  if (options.q) log.level = Logger.ERROR;
+
+  if (options.date) {
+    // if we think we were given seconds
+    if (options.date &lt; 10000000000 ) options.date = options.date * 1000;
+    options.date = new Date(options.date);
+  }
+
+  var reports = [];
+
+  var fileOutputDir = outputDir ? path.join(outputDir, fileDir) : false;
+
+  var commonBasePath = util.findCommonBase(files);
+
+  var runReports = function(files, done) {
+    files.forEach(function(file) {
+      if (options.exclude &amp;&amp; options.exclude.test(file)) return;
+
+      if (options.recurse &amp;&amp; fs.statSync(file).isDirectory()) {
+        files = fs.readdirSync(file).map(function(innerFile) {
+          return path.join(file,innerFile);
+        });
+        runReports(files);
+      } else if (file.match(/\.js$/)) {
+        log.info('Reading "%s"', file);
+
+        var fileShort = file.replace(commonBasePath, '');
+        var fileSafe = fileShort.replace(/[^a-zA-Z0-9]/g,'_');
+        var source = fs.readFileSync(file).toString().trim();
+        if (!source) {
+          log.info('Not parsing empty file "%s"', file);
+          return;
+        }
+
+        // if skip empty line option
+        if(options.noempty) {
+          source = source.replace(/^\s*[\r\n]/gm ,"");
+        }
+
+        // if begins with shebang
+        if (source[0] === '#' &amp;&amp; source[1] === '!') {
+          source = '//' + source;
+        }
+        var report = {
+          info : {
+            file : file,
+            fileShort : fileShort,
+            fileSafe : fileSafe,
+            link : fileDir + '/' + fileSafe + '/index.html'
+          }
+        };
+
+        var error = false;
+        _.each(reporters,function(reporter, name) {
+          if (!flags[name]) return;
+          try {
+            report[name] = reporter.process(source, flags[name], report.info);
+          } catch (e) {
+            error = true;
+            log.error('Error reading file %s: ', file, e.toString());
+            log.error(e.stack);
+          }
+        });
+
+        if (error) return;
+        reports.push(report);
+        if (fileOutputDir) {
+          var outdir = path.join(fileOutputDir, report.info.fileSafe);
+          if (!fs.existsSync(outdir)) fs.mkdirSync(outdir);
+          writeFileReport(outdir, report, source, options);
+        }
+      }
+    });
+    if (done) done();
+  };
+
+  if (!fileOutputDir) {
+    runReports(files,function() {
+      done(reports);
+    });
+  } else {
+    fs.mkdirp(fileOutputDir,function() {
+      runReports(files,function() {
+        var reportFilePrefix = path.join(outputDir, 'report');
+        var overview = path.join(outputDir, 'index.html');
+        var wallDisplay = path.join(outputDir, 'display.html');
+
+        fs.copy(assets, path.join(outputDir, 'assets'), function() {
+          var overviewReport = exports.getOverviewReport(reports);
+          updateHistoricalOverview(reportFilePrefix, overviewReport, options);
+          writeReport(reportFilePrefix, overviewReport);
+          writeOverview(overview, overviewReport, {
+            title : options.title,
+            flags : flags
+          }, overviewTemplate);
+          writeOverview(wallDisplay, overviewReport, {
+            title : options.title,
+            flags : flags
+          }, displayTemplate);
+          done(reports);
+        });
+      });
+    });
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+};
+
+var callback = function (report){
+// once done the analysis,
+// execute this
+};
+
+plato.<span class="apidocCodeKeywordSpan">inspect</span>(files, outputDir, options, callback);
+```
+
+## Data sources
+
+- Complexity data by [Phil Booth](https://github.com/philbooth)'s [complexity-report](https://github.com/philbooth/complexityReport
+.js)
+- Lint data from [jshint](https://github.com/jshint/jshint/) and [eslint](https://github.com/eslint/eslint)
+...</pre></li>
+    </ul>
 
 
 </div>
