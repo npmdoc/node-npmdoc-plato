@@ -784,11 +784,11 @@ local.templateApidocHtml = '\
                         return;
                     }
                     Object.keys(moduleDict[prefix]).forEach(function (key) {
-                        if (!(/^\w[\w\-.]*?$/).test(key) || !moduleDict[prefix][key]) {
-                            return;
-                        }
-                        // bug-workaround - buggy electron accessors
+                        // bug-workaround - buggy electron getter / setter
                         try {
+                            if (!(/^\w[\w\-.]*?$/).test(key) || !moduleDict[prefix][key]) {
+                                return;
+                            }
                             tmp = element === 'prototype'
                                 ? {
                                     module: moduleDict[prefix][key].prototype,
@@ -811,6 +811,7 @@ local.templateApidocHtml = '\
                             ].some(function (dict) {
                                 return typeof dict === 'function' ||
                                     Object.keys(dict || {}).some(function (key) {
+                                        // bug-workaround - buggy electron getter / setter
                                         try {
                                             return typeof dict[key] === 'function';
                                         } catch (ignore) {
@@ -9964,7 +9965,7 @@ the greatest app in the world!\n\
 #### todo\n\
 - none\n\
 \n\
-#### changes for v0.0.1\n\
+#### changelog for v0.0.1\n\
 - none\n\
 \n\
 #### this package requires\n\
@@ -10041,10 +10042,10 @@ the greatest app in the world!\n\
     "scripts": {\n\
         "build-ci": "utility2 shReadmeTest build_ci.sh",\n\
         "env": "env",\n\
-        "heroku-postbuild": "(set -e; npm install \\\"kaizhu256/node-utility2#alpha\\\"; utility2 shDeployHeroku)",\n\
-        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",\n\
-        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",\n\
-        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"\n\
+        "heroku-postbuild": "npm install \\\"kaizhu256/node-utility2#alpha\\\" && utility2 shDeployHeroku",\n\
+        "postinstall": "[ ! -f npm_scripts.sh ] || ./npm_scripts.sh postinstall",\n\
+        "start": "PORT=${PORT:-8080} utility2 start test.js",\n\
+        "test": "PORT=$(utility2 shServerPortRandom) utility2 test test.js"\n\
     },\n\
     "version": "0.0.1"\n\
 }\n\
@@ -11672,7 +11673,6 @@ local.assetsDict['/favicon.ico'] = '';
                     local.processSpawnWithTimeout('electron', [
                         __filename,
                         'browserTest',
-                        '--disable-overlay-scrollbar',
                         '--enable-logging'
                     ], {
                         env: options,
@@ -12123,7 +12123,7 @@ return Utf8ArrayToStr(bff);
                 // try to recover from error
                 setTimeout(onError, error && local.timeoutDefault);
             };
-            // try to salvage uncaughtException
+            // try to recover from uncaughtException
             process.on('uncaughtException', onError2);
             onParallel = local.utility2.onParallel(onError2);
             onParallel.counter += 1;
@@ -12456,8 +12456,32 @@ return Utf8ArrayToStr(bff);
                             offset: 100,
                             sort_by: 'asc'
                         }, {
+                            offset: 200,
+                            sort_by: 'asc'
+                        }, {
+                            offset: 300,
+                            sort_by: 'asc'
+                        }, {
+                            offset: 400,
+                            sort_by: 'asc'
+                        }, {
                             offset: Math.floor(Math.random() * count) - 100,
                             sort_by: 'asc'
+                        }, {
+                            offset: Math.floor(Math.random() * count) - 100,
+                            sort_by: 'asc'
+                        }, {
+                            offset: 0,
+                            sort_by: 'desc'
+                        }, {
+                            offset: count - 500,
+                            sort_by: 'desc'
+                        }, {
+                            offset: count - 400,
+                            sort_by: 'desc'
+                        }, {
+                            offset: count - 300,
+                            sort_by: 'desc'
                         }, {
                             offset: count - 200,
                             sort_by: 'desc'
@@ -19885,7 +19909,7 @@ local.templateUiResponseAjax = '\
         global.utility2_rollup;
     local.local = local;
 /* jslint-ignore-begin */
-local._stateInit({"utility2":{"assetsDict":{"/assets.index.template.html":"<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>{{env.npm_package_name}} (v{{env.npm_package_version}})</title>\n<style>\n/*csslint\n    box-sizing: false,\n    universal-selector: false\n*/\n* {\n    box-sizing: border-box;\n}\nbody {\n    background: #dde;\n    font-family: Arial, Helvetica, sans-serif;\n    margin: 2rem;\n}\nbody > * {\n    margin-bottom: 1rem;\n}\n.utility2FooterDiv {\n    margin-top: 20px;\n    text-align: center;\n}\n</style>\n<style>\n/*csslint\n*/\ntextarea {\n    font-family: monospace;\n    height: 10rem;\n    width: 100%;\n}\ntextarea[readonly] {\n    background: #ddd;\n}\n</style>\n</head>\n<body>\n<!-- utility2-comment\n<div id=\"ajaxProgressDiv1\" style=\"background: #d00; height: 2px; left: 0; margin: 0; padding: 0; position: fixed; top: 0; transition: background 0.5s, width 1.5s; width: 25%;\"></div>\nutility2-comment -->\n<h1>\n<!-- utility2-comment\n    <a\n        {{#if env.npm_package_homepage}}\n        href=\"{{env.npm_package_homepage}}\"\n        {{/if env.npm_package_homepage}}\n        target=\"_blank\"\n    >\nutility2-comment -->\n        {{env.npm_package_name}} (v{{env.npm_package_version}})\n<!-- utility2-comment\n    </a>\nutility2-comment -->\n</h1>\n<h3>{{env.npm_package_description}}</h3>\n<!-- utility2-comment\n<h4><a download href=\"assets.app.js\">download standalone app</a></h4>\n<button class=\"onclick onreset\" id=\"testRunButton1\">run internal test</button><br>\n<div id=\"testReportDiv1\" style=\"display: none;\"></div>\nutility2-comment -->\n\n\n\n<label>stderr and stdout</label>\n<textarea class=\"resettable\" id=\"outputTextareaStdout1\" readonly></textarea>\n<!-- utility2-comment\n{{#if isRollup}}\n<script src=\"assets.app.js\"></script>\n{{#unless isRollup}}\nutility2-comment -->\n<script src=\"assets.utility2.rollup.js\"></script>\n<script src=\"jsonp.utility2._stateInit?callback=window.utility2._stateInit\"></script>\n<script src=\"assets.npmdoc_plato.rollup.js\"></script>\n<script src=\"assets.example.js\"></script>\n<script src=\"assets.test.js\"></script>\n<!-- utility2-comment\n{{/if isRollup}}\nutility2-comment -->\n<div class=\"utility2FooterDiv\">\n    [ this app was created with\n    <a href=\"https://github.com/kaizhu256/node-utility2\" target=\"_blank\">utility2</a>\n    ]\n</div>\n</body>\n</html>\n"},"env":{"NODE_ENV":"test","npm_package_description":"api documentation for [plato (v1.7.0)](https://github.com/es-analysis/plato) [![npm package](https://img.shields.io/npm/v/npmdoc-plato.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-plato) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-plato.svg)](https://travis-ci.org/npmdoc/node-npmdoc-plato)","npm_package_homepage":"https://github.com/npmdoc/node-npmdoc-plato","npm_package_name":"npmdoc-plato","npm_package_nameAlias":"npmdoc_plato","npm_package_version":"0.0.2"}}});
+local._stateInit({"utility2":{"assetsDict":{"/assets.index.template.html":"<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>{{env.npm_package_name}} (v{{env.npm_package_version}})</title>\n<style>\n/*csslint\n    box-sizing: false,\n    universal-selector: false\n*/\n* {\n    box-sizing: border-box;\n}\nbody {\n    background: #dde;\n    font-family: Arial, Helvetica, sans-serif;\n    margin: 2rem;\n}\nbody > * {\n    margin-bottom: 1rem;\n}\n.utility2FooterDiv {\n    margin-top: 20px;\n    text-align: center;\n}\n</style>\n<style>\n/*csslint\n*/\ntextarea {\n    font-family: monospace;\n    height: 10rem;\n    width: 100%;\n}\ntextarea[readonly] {\n    background: #ddd;\n}\n</style>\n</head>\n<body>\n<!-- utility2-comment\n<div id=\"ajaxProgressDiv1\" style=\"background: #d00; height: 2px; left: 0; margin: 0; padding: 0; position: fixed; top: 0; transition: background 0.5s, width 1.5s; width: 25%;\"></div>\nutility2-comment -->\n<h1>\n<!-- utility2-comment\n    <a\n        {{#if env.npm_package_homepage}}\n        href=\"{{env.npm_package_homepage}}\"\n        {{/if env.npm_package_homepage}}\n        target=\"_blank\"\n    >\nutility2-comment -->\n        {{env.npm_package_name}} (v{{env.npm_package_version}})\n<!-- utility2-comment\n    </a>\nutility2-comment -->\n</h1>\n<h3>{{env.npm_package_description}}</h3>\n<!-- utility2-comment\n<h4><a download href=\"assets.app.js\">download standalone app</a></h4>\n<button class=\"onclick onreset\" id=\"testRunButton1\">run internal test</button><br>\n<div id=\"testReportDiv1\" style=\"display: none;\"></div>\nutility2-comment -->\n\n\n\n<label>stderr and stdout</label>\n<textarea class=\"resettable\" id=\"outputTextareaStdout1\" readonly></textarea>\n<!-- utility2-comment\n{{#if isRollup}}\n<script src=\"assets.app.js\"></script>\n{{#unless isRollup}}\nutility2-comment -->\n<script src=\"assets.utility2.rollup.js\"></script>\n<script src=\"jsonp.utility2._stateInit?callback=window.utility2._stateInit\"></script>\n<script src=\"assets.npmdoc_plato.rollup.js\"></script>\n<script src=\"assets.example.js\"></script>\n<script src=\"assets.test.js\"></script>\n<!-- utility2-comment\n{{/if isRollup}}\nutility2-comment -->\n<div class=\"utility2FooterDiv\">\n    [ this app was created with\n    <a href=\"https://github.com/kaizhu256/node-utility2\" target=\"_blank\">utility2</a>\n    ]\n</div>\n</body>\n</html>\n"},"env":{"NODE_ENV":"test","npm_package_description":"api documentation for [plato (v1.7.0)](https://github.com/es-analysis/plato) [![npm package](https://img.shields.io/npm/v/npmdoc-plato.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-plato) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-plato.svg)](https://travis-ci.org/npmdoc/node-npmdoc-plato)","npm_package_homepage":"https://github.com/npmdoc/node-npmdoc-plato","npm_package_name":"npmdoc-plato","npm_package_nameAlias":"npmdoc_plato","npm_package_version":"0.0.1"}}});
 /* jslint-ignore-end */
 }());
 /* script-end local._stateInit */
