@@ -63,15 +63,6 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.plato.Gruntfile">
-            function <span class="apidocSignatureSpan">plato.</span>Gruntfile
-            <span class="apidocSignatureSpan">(grunt)</span>
-            </a>
-
-        </li>
-
-        <li>
-
             <a class="apidocElementLiA" href="#apidoc.element.plato.getOverviewReport">
             function <span class="apidocSignatureSpan">plato.</span>getOverviewReport
             <span class="apidocSignatureSpan">(reports)</span>
@@ -99,6 +90,12 @@
 
         <li>
 
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">plato.</span>cli</span>
+
+        </li>
+
+        <li>
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">plato.</span>info</span>
 
         </li>
@@ -117,27 +114,26 @@
 
     </ol></li>
 
-    <li class="apidocModuleLi"><a href="#apidoc.module.plato.Gruntfile">module plato.Gruntfile</a><ol>
+    <li class="apidocModuleLi"><a href="#apidoc.module.plato.cli">module plato.cli</a><ol>
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.plato.Gruntfile.Gruntfile">
-            function <span class="apidocSignatureSpan">plato.</span>Gruntfile
-            <span class="apidocSignatureSpan">(grunt)</span>
+            <a class="apidocElementLiA" href="#apidoc.element.plato.cli.exec">
+            function <span class="apidocSignatureSpan">plato.cli.</span>exec
+            <span class="apidocSignatureSpan">(options, done)</span>
             </a>
 
         </li>
 
-    </ol></li>
+        <li>
 
-    <li class="apidocModuleLi"><a href="#apidoc.module.plato.getOverviewReport">module plato.getOverviewReport</a><ol>
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">plato.cli.</span>args</span>
+
+        </li>
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.plato.getOverviewReport.getOverviewReport">
-            function <span class="apidocSignatureSpan">plato.</span>getOverviewReport
-            <span class="apidocSignatureSpan">(reports)</span>
-            </a>
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">plato.cli.</span>options</span>
 
         </li>
 
@@ -166,19 +162,6 @@
         <li>
 
             <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">plato.info.</span>name</span>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.plato.inspect">module plato.inspect</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.plato.inspect.inspect">
-            function <span class="apidocSignatureSpan">plato.</span>inspect
-            <span class="apidocSignatureSpan">(files, outputDir, options, done)</span>
-            </a>
 
         </li>
 
@@ -329,158 +312,6 @@
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.plato" id="apidoc.module.plato">module plato</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.plato.Gruntfile" id="apidoc.element.plato.Gruntfile">
-        function <span class="apidocSignatureSpan">plato.</span>Gruntfile
-        <span class="apidocSignatureSpan">(grunt)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">Gruntfile = function (grunt) {
-
-  // Project configuration.
-  grunt.initConfig({
-    nodeunit: {
-      files: [&#x27;test/**/*_test.js&#x27;]
-    },
-    jshint: {
-      options: {
-        jshintrc: &#x27;.jshintrc&#x27;
-      },
-      gruntfile: {
-        src: &#x27;Gruntfile.js&#x27;
-      },
-      lib: {
-        src: [&#x27;lib/**/*.js&#x27;, &#x27;!lib/assets/**/*.js&#x27;]
-      },
-      test: {
-        src: [&#x27;test/**/*.js&#x27;,&#x27;!test/fixtures/**/*.js&#x27;]
-      },
-      assets: {
-        src: [&#x27;lib/assets/scripts/*.js&#x27;]
-      }
-    },
-    uglify: {
-      &#x27;assets&#x27; : {
-        files : {
-          &#x27;lib/assets/scripts/bundles/core-bundle.js&#x27; : [
-            &#x27;lib/assets/scripts/vendor/jquery-1.8.3.min.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/lodash.min.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/raphael-min.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/morris.min.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/jquery.fittext.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/bootstrap-tooltip.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/bootstrap-popover.js&#x27;
-          ],
-          &#x27;lib/assets/scripts/bundles/codemirror.js&#x27; : [
-            &#x27;lib/assets/scripts/vendor/codemirror/codemirror.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/codemirror/javascript.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/codemirror/util/searchcursor.js&#x27;
-          ]
-        }
-      }
-    },
-    watch: {
-      gruntfile: {
-        files: &#x27;&#x3c;%= jshint.gruntfile.src %&#x3e;&#x27;,
-        tasks: [&#x27;jshint:gruntfile&#x27;]
-      },
-      lib: {
-        files: &#x27;&#x3c;%= jshint.lib.src %&#x3e;&#x27;,
-        tasks: [&#x27;jshint:lib&#x27;, &#x27;nodeunit&#x27;]
-      },
-      test: {
-        files: &#x27;&#x3c;%= jshint.test.src %&#x3e;&#x27;,
-        tasks: [&#x27;jshint:test&#x27;, &#x27;nodeunit&#x27;]
-      }
-    },
-    casper : {
-      test: {
-        files: {
-          &#x27;reports/casper.xml&#x27;: [
-            &#x27;test/casper-overview.js&#x27;,
-            &#x27;test/casper-sortable-file-list.js&#x27;
-          ],
-        },
-        options : {
-          test: true,
-          verbose: true,
-          &#x27;fail-fast&#x27;: true,
-          &#x27;log-level&#x27;: &#x27;error&#x27;,
-          concise: true,
-          parallel : false,
-          concurrency : 2
-        }
-      }
-    }
-  });
-
-  grunt.loadNpmTasks(&#x27;grunt-contrib-jshint&#x27;);
-  grunt.loadNpmTasks(&#x27;grunt-contrib-nodeunit&#x27;);
-  grunt.loadNpmTasks(&#x27;grunt-contrib-uglify&#x27;);
-  grunt.loadNpmTasks(&#x27;grunt-contrib-watch&#x27;);
-  grunt.loadNpmTasks(&#x27;grunt-casper&#x27;);
-
-  grunt.registerTask(&#x27;runtest&#x27;,function(){
-    var done = this.async();
-
-    grunt.util.spawn({
-        cmd : &#x27;./bin/plato&#x27;,
-        args : [
-          &#x27;-q&#x27;,
-          &#x27;-dtmp&#x27;,
-          &#x27;-ttest report&#x27;,
-          &#x27;test/fixtures/a.js&#x27;,&#x27;test/fixtures/b.js&#x27;,&#x27;test/fixtures/c-es6.js&#x27;,&#x27;test/fixtures/d-es6.js&#x27;,&#x27;test/fixtures/empty.js&#x27;
-        ]
-      },
-      function(err, result, code){
-        console.log(result.stdout);
-        console.log(result.stderr);
-        if (err || code !== 0) {
-          grunt.fatal(&#x27;Running plato binary failed&#x27;);
-        }
-        done();
-      }
-    );
-  });
-
-  grunt.registerTask(&#x27;runbin&#x27;,function(){
-    var done = this.async();
-
-    grunt.util.spawn({
-        cmd : &#x27;./bin/plato&#x27;,
-        args : [
-          &#x27;-q&#x27;,
-          &#x27;-r&#x27;,
-          &#x27;-l.jshintrc&#x27;,
-          &#x27;-xvendor|bundles&#x27;,
-          &#x27;-dreports&#x27;,
-          &#x27;-tPlato report&#x27;,
-          &#x27;lib/&#x27;
-        ]
-      },
-      function(err, result, code){
-        console.log(result.stdout);
-        if (err || code !== 0) {
-          console.log(err);
-          grunt.fatal(&#x27;Running plato binary failed&#x27;);
-        }
-        done();
-      }
-    );
-  });
-
-  grunt.registerTask(&#x27;optimize&#x27;, [&#x27;uglify&#x27;]);
-  // Default task.
-  grunt.registerTask(&#x27;test&#x27;, [&#x27;jshint&#x27;, &#x27;nodeunit&#x27;, &#x27;runtest&#x27;, &#x27;runbin&#x27;, &#x27;casper&#x27;]);
-  grunt.registerTask(&#x27;default&#x27;, [&#x27;test&#x27;]);
-
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
 
 
     <h2>
@@ -729,226 +560,68 @@ plato.<span class="apidocCodeKeywordSpan">inspect</span>(files, outputDir, optio
 
 
 
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.plato.Gruntfile" id="apidoc.module.plato.Gruntfile">module plato.Gruntfile</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.plato.Gruntfile.Gruntfile" id="apidoc.element.plato.Gruntfile.Gruntfile">
-        function <span class="apidocSignatureSpan">plato.</span>Gruntfile
-        <span class="apidocSignatureSpan">(grunt)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">Gruntfile = function (grunt) {
-
-  // Project configuration.
-  grunt.initConfig({
-    nodeunit: {
-      files: [&#x27;test/**/*_test.js&#x27;]
-    },
-    jshint: {
-      options: {
-        jshintrc: &#x27;.jshintrc&#x27;
-      },
-      gruntfile: {
-        src: &#x27;Gruntfile.js&#x27;
-      },
-      lib: {
-        src: [&#x27;lib/**/*.js&#x27;, &#x27;!lib/assets/**/*.js&#x27;]
-      },
-      test: {
-        src: [&#x27;test/**/*.js&#x27;,&#x27;!test/fixtures/**/*.js&#x27;]
-      },
-      assets: {
-        src: [&#x27;lib/assets/scripts/*.js&#x27;]
-      }
-    },
-    uglify: {
-      &#x27;assets&#x27; : {
-        files : {
-          &#x27;lib/assets/scripts/bundles/core-bundle.js&#x27; : [
-            &#x27;lib/assets/scripts/vendor/jquery-1.8.3.min.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/lodash.min.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/raphael-min.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/morris.min.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/jquery.fittext.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/bootstrap-tooltip.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/bootstrap-popover.js&#x27;
-          ],
-          &#x27;lib/assets/scripts/bundles/codemirror.js&#x27; : [
-            &#x27;lib/assets/scripts/vendor/codemirror/codemirror.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/codemirror/javascript.js&#x27;,
-            &#x27;lib/assets/scripts/vendor/codemirror/util/searchcursor.js&#x27;
-          ]
-        }
-      }
-    },
-    watch: {
-      gruntfile: {
-        files: &#x27;&#x3c;%= jshint.gruntfile.src %&#x3e;&#x27;,
-        tasks: [&#x27;jshint:gruntfile&#x27;]
-      },
-      lib: {
-        files: &#x27;&#x3c;%= jshint.lib.src %&#x3e;&#x27;,
-        tasks: [&#x27;jshint:lib&#x27;, &#x27;nodeunit&#x27;]
-      },
-      test: {
-        files: &#x27;&#x3c;%= jshint.test.src %&#x3e;&#x27;,
-        tasks: [&#x27;jshint:test&#x27;, &#x27;nodeunit&#x27;]
-      }
-    },
-    casper : {
-      test: {
-        files: {
-          &#x27;reports/casper.xml&#x27;: [
-            &#x27;test/casper-overview.js&#x27;,
-            &#x27;test/casper-sortable-file-list.js&#x27;
-          ],
-        },
-        options : {
-          test: true,
-          verbose: true,
-          &#x27;fail-fast&#x27;: true,
-          &#x27;log-level&#x27;: &#x27;error&#x27;,
-          concise: true,
-          parallel : false,
-          concurrency : 2
-        }
-      }
-    }
-  });
-
-  grunt.loadNpmTasks(&#x27;grunt-contrib-jshint&#x27;);
-  grunt.loadNpmTasks(&#x27;grunt-contrib-nodeunit&#x27;);
-  grunt.loadNpmTasks(&#x27;grunt-contrib-uglify&#x27;);
-  grunt.loadNpmTasks(&#x27;grunt-contrib-watch&#x27;);
-  grunt.loadNpmTasks(&#x27;grunt-casper&#x27;);
-
-  grunt.registerTask(&#x27;runtest&#x27;,function(){
-    var done = this.async();
-
-    grunt.util.spawn({
-        cmd : &#x27;./bin/plato&#x27;,
-        args : [
-          &#x27;-q&#x27;,
-          &#x27;-dtmp&#x27;,
-          &#x27;-ttest report&#x27;,
-          &#x27;test/fixtures/a.js&#x27;,&#x27;test/fixtures/b.js&#x27;,&#x27;test/fixtures/c-es6.js&#x27;,&#x27;test/fixtures/d-es6.js&#x27;,&#x27;test/fixtures/empty.js&#x27;
-        ]
-      },
-      function(err, result, code){
-        console.log(result.stdout);
-        console.log(result.stderr);
-        if (err || code !== 0) {
-          grunt.fatal(&#x27;Running plato binary failed&#x27;);
-        }
-        done();
-      }
-    );
-  });
-
-  grunt.registerTask(&#x27;runbin&#x27;,function(){
-    var done = this.async();
-
-    grunt.util.spawn({
-        cmd : &#x27;./bin/plato&#x27;,
-        args : [
-          &#x27;-q&#x27;,
-          &#x27;-r&#x27;,
-          &#x27;-l.jshintrc&#x27;,
-          &#x27;-xvendor|bundles&#x27;,
-          &#x27;-dreports&#x27;,
-          &#x27;-tPlato report&#x27;,
-          &#x27;lib/&#x27;
-        ]
-      },
-      function(err, result, code){
-        console.log(result.stdout);
-        if (err || code !== 0) {
-          console.log(err);
-          grunt.fatal(&#x27;Running plato binary failed&#x27;);
-        }
-        done();
-      }
-    );
-  });
-
-  grunt.registerTask(&#x27;optimize&#x27;, [&#x27;uglify&#x27;]);
-  // Default task.
-  grunt.registerTask(&#x27;test&#x27;, [&#x27;jshint&#x27;, &#x27;nodeunit&#x27;, &#x27;runtest&#x27;, &#x27;runbin&#x27;, &#x27;casper&#x27;]);
-  grunt.registerTask(&#x27;default&#x27;, [&#x27;test&#x27;]);
-
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
 
 
 </div>
 
 <div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.plato.getOverviewReport" id="apidoc.module.plato.getOverviewReport">module plato.getOverviewReport</a></h1>
+<h1><a href="#apidoc.module.plato.cli" id="apidoc.module.plato.cli">module plato.cli</a></h1>
 
 
     <h2>
-        <a href="#apidoc.element.plato.getOverviewReport.getOverviewReport" id="apidoc.element.plato.getOverviewReport.getOverviewReport">
-        function <span class="apidocSignatureSpan">plato.</span>getOverviewReport
-        <span class="apidocSignatureSpan">(reports)</span>
+        <a href="#apidoc.element.plato.cli.exec" id="apidoc.element.plato.cli.exec">
+        function <span class="apidocSignatureSpan">plato.cli.</span>exec
+        <span class="apidocSignatureSpan">(options, done)</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">getOverviewReport = function (reports) {
-  var culledReports = [];
-  var summary = {
-    total : {
-      jshint: 0,
-      sloc : 0,
-      maintainability : 0
-    },
-    average : {
-      sloc : 0,
-      maintainability : 0
-    }
+    <li>description and source-code<pre class="apidocCodePre">exec = function (options, done) {
+  if (typeof options === &#x27;function&#x27;) {
+    done = options;
+    options = undefined;
+  }
+
+  if (options) {
+    Object.keys(options).forEach(function(key) {
+      if (!(key in exports.args)) exports.args[key] = options[key];
+    });
+  }
+
+  var files     = exports.args.files;
+  var outputDir = exports.args.d.value;
+  var platoOptions = {
+    recurse : !!exports.args.r,
+    q: !!exports.args.q,
+    title : exports.args.t &#x26;&#x26; exports.args.t.value,
+    exclude : exports.args.x &#x26;&#x26; new RegExp(exports.args.x.value),
+    date : exports.args.D &#x26;&#x26; exports.args.D.value
   };
+  var json;
+  var jshintrc = {};
 
-  reports.forEach(function(report) {
-    // clone objects so we don&#x27;t have to worry about side effects
-    summary.total.sloc += report.complexity.methodAggregate.sloc.physical;
-    summary.total.maintainability += report.complexity.maintainability;
-
-    var methodAggregate = _.cloneDeep(report.complexity.methodAggregate);
-    var reportItem = {};
-    reportItem.info = report.info;
-    if (report.jshint) {
-      summary.total.jshint += report.jshint.messages.length;
-      reportItem.jshint = {
-        messages : report.jshint.messages.length
-      };
+  if (exports.args.l) {
+    if (typeof exports.args.l.value === &#x27;string&#x27;) {
+      json = fs.readFileSync(exports.args.l.value).toString();
+      jshintrc = JSON.parse(util.stripComments(json));
     }
-    if (report.complexity) {
-      reportItem.complexity = {
-        methodAggregate : methodAggregate,
-        module : report.complexity.module,
-        module_safe : report.complexity.module_safe,
-        maintainability : _.cloneDeep(report.complexity.maintainability)
-      };
-    }
-    culledReports.push(reportItem);
-  });
+    platoOptions.jshint = { globals : jshintrc.globals || {} };
+    delete jshintrc.globals;
+    platoOptions.jshint.options = jshintrc;
 
-  summary.average.sloc = ~~(summary.total.sloc / reports.length);
-  summary.average.jshint = (summary.total.jshint / reports.length).toFixed(2);
-  summary.average.maintainability = (summary.total.maintainability / reports.length).toFixed(2);
+  } else if (exports.args.e) {
+    json = fs.readFileSync(exports.args.e.value).toString();
+    jshintrc = JSON.parse(util.stripComments(json));
+    platoOptions.eslint = jshintrc;
+  }
 
-  return {
-    summary : summary,
-    reports : culledReports
-  };
+  plato.inspect(files, outputDir, platoOptions, done);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
+
+
+
+
 
 
 </div>
@@ -978,7 +651,23 @@ plato.<span class="apidocCodeKeywordSpan">inspect</span>(files, outputDir, optio
     console.log(&#x27;      %s&#x27;, option.desc);
   });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+}
+
+if (!modal) {
+  required.forEach(function(option) {
+    if (!args[option] || !args[option].value) {
+      console.log(&#x22;Must specify a value for option %s (%s : %s)&#x22;, option, options[option].long, options[option].desc);
+      info.<span class="apidocCodeKeywordSpan">help</span>();
+      process.exit(1);
+    }
+  });
+}
+
+// what&#x27;s left in argv
+args.files = process.argv.slice(parser.optind());
+...</pre></li>
     </ul>
 
 
@@ -997,177 +686,6 @@ plato.<span class="apidocCodeKeywordSpan">inspect</span>(files, outputDir, optio
     </ul>
 
 
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.plato.inspect" id="apidoc.module.plato.inspect">module plato.inspect</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.plato.inspect.inspect" id="apidoc.element.plato.inspect.inspect">
-        function <span class="apidocSignatureSpan">plato.</span>inspect
-        <span class="apidocSignatureSpan">(files, outputDir, options, done)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">inspect = function (files, outputDir, options, done) {
-
-	if (!files) {
-	  // at least give me a file man...
-	  return;
-	}
-
-  files = files instanceof Array ? files : [files];
-  files = _.flatten(files.map(unary(glob.sync)));
-
-  var flags = {
-    complexity : {
-      commonjs : true,
-      logicalor : true,
-      switchcase : true,
-      forin : false,
-      trycatch : false,
-      newmi : true
-    },
-    jshint : {} // use jshint defaults
-  };
-
-  if (options.eslint) {
-    options.jshint = options.eslint;
-    reporters.jshint = reporters.eslint;
-    delete options.eslint;
-    delete reporters.eslint;
-  }
-
-  Object.keys(flags).forEach(function(flag){
-    if (flag in options) flags[flag] = _.clone(options[flag]);
-  });
-
-  if (options.q) log.level = Logger.ERROR;
-
-  if (options.date) {
-    // if we think we were given seconds
-    if (options.date &#x3c; 10000000000 ) options.date = options.date * 1000;
-    options.date = new Date(options.date);
-  }
-
-  var reports = [];
-
-  var fileOutputDir = outputDir ? path.join(outputDir, fileDir) : false;
-
-  var commonBasePath = util.findCommonBase(files);
-
-  var runReports = function(files, done) {
-    files.forEach(function(file) {
-      if (options.exclude &#x26;&#x26; options.exclude.test(file)) return;
-
-      if (options.recurse &#x26;&#x26; fs.statSync(file).isDirectory()) {
-        files = fs.readdirSync(file).map(function(innerFile) {
-          return path.join(file,innerFile);
-        });
-        runReports(files);
-      } else if (file.match(/\.js$/)) {
-        log.info(&#x27;Reading &#x22;%s&#x22;&#x27;, file);
-
-        var fileShort = file.replace(commonBasePath, &#x27;&#x27;);
-        var fileSafe = fileShort.replace(/[^a-zA-Z0-9]/g,&#x27;_&#x27;);
-        var source = fs.readFileSync(file).toString().trim();
-        if (!source) {
-          log.info(&#x27;Not parsing empty file &#x22;%s&#x22;&#x27;, file);
-          return;
-        }
-
-        // if skip empty line option
-        if(options.noempty) {
-          source = source.replace(/^\s*[\r\n]/gm ,&#x22;&#x22;);
-        }
-
-        // if begins with shebang
-        if (source[0] === &#x27;#&#x27; &#x26;&#x26; source[1] === &#x27;!&#x27;) {
-          source = &#x27;//&#x27; + source;
-        }
-        var report = {
-          info : {
-            file : file,
-            fileShort : fileShort,
-            fileSafe : fileSafe,
-            link : fileDir + &#x27;/&#x27; + fileSafe + &#x27;/index.html&#x27;
-          }
-        };
-
-        var error = false;
-        _.each(reporters,function(reporter, name) {
-          if (!flags[name]) return;
-          try {
-            report[name] = reporter.process(source, flags[name], report.info);
-          } catch (e) {
-            error = true;
-            log.error(&#x27;Error reading file %s: &#x27;, file, e.toString());
-            log.error(e.stack);
-          }
-        });
-
-        if (error) return;
-        reports.push(report);
-        if (fileOutputDir) {
-          var outdir = path.join(fileOutputDir, report.info.fileSafe);
-          if (!fs.existsSync(outdir)) fs.mkdirSync(outdir);
-          writeFileReport(outdir, report, source, options);
-        }
-      }
-    });
-    if (done) done();
-  };
-
-  if (!fileOutputDir) {
-    runReports(files,function() {
-      done(reports);
-    });
-  } else {
-    fs.mkdirp(fileOutputDir,function() {
-      runReports(files,function() {
-        var reportFilePrefix = path.join(outputDir, &#x27;report&#x27;);
-        var overview = path.join(outputDir, &#x27;index.html&#x27;);
-        var wallDisplay = path.join(outputDir, &#x27;display.html&#x27;);
-
-        fs.copy(assets, path.join(outputDir, &#x27;assets&#x27;), function() {
-          var overviewReport = exports.getOverviewReport(reports);
-          updateHistoricalOverview(reportFilePrefix, overviewReport, options);
-          writeReport(reportFilePrefix, overviewReport);
-          writeOverview(overview, overviewReport, {
-            title : options.title,
-            flags : flags
-          }, overviewTemplate);
-          writeOverview(wallDisplay, overviewReport, {
-            title : options.title,
-            flags : flags
-          }, displayTemplate);
-          done(reports);
-        });
-      });
-    });
-  }
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-};
-
-var callback = function (report){
-// once done the analysis,
-// execute this
-};
-
-plato.<span class="apidocCodeKeywordSpan">inspect</span>(files, outputDir, options, callback);
-```
-
-## Data sources
-
-- Complexity data by [Phil Booth](https://github.com/philbooth)&#x27;s [complexity-report](https://github.com/philbooth/complexityReport
-.js)
-- Lint data from [jshint](https://github.com/jshint/jshint/) and [eslint](https://github.com/eslint/eslint)
-...</pre></li>
-    </ul>
 
 
 </div>
@@ -1444,7 +962,23 @@ str = str || &#x27;&#x27;;
 
   return str.replace(multiline, &#x27;&#x27;).replace(singleline, &#x27;&#x27;);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+};
+var json;
+var jshintrc = {};
+
+if (exports.args.l) {
+  if (typeof exports.args.l.value === &#x27;string&#x27;) {
+    json = fs.readFileSync(exports.args.l.value).toString();
+    jshintrc = JSON.parse(util.<span class="apidocCodeKeywordSpan">stripComments</span>(json));
+  }
+  platoOptions.jshint = { globals : jshintrc.globals || {} };
+  delete jshintrc.globals;
+  platoOptions.jshint.options = jshintrc;
+
+} else if (exports.args.e) {
+  json = fs.readFileSync(exports.args.e.value).toString();
+...</pre></li>
     </ul>
 
 
