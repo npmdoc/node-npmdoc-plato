@@ -1,4 +1,7 @@
-# api documentation for  [plato (v1.7.0)](https://github.com/es-analysis/plato)  [![npm package](https://img.shields.io/npm/v/npmdoc-plato.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-plato) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-plato.svg)](https://travis-ci.org/npmdoc/node-npmdoc-plato)
+# npmdoc-plato
+
+#### api documentation for  [plato (v1.7.0)](https://github.com/es-analysis/plato)  [![npm package](https://img.shields.io/npm/v/npmdoc-plato.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-plato) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-plato.svg)](https://travis-ci.org/npmdoc/node-npmdoc-plato)
+
 #### JavaScript source analysis and visualizer
 
 [![NPM](https://nodei.co/npm/plato.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/plato)
